@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>My Beautiful Website</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo"> News </div>
+        <div class="menu">
+            <a href="#" onclick="loadNews('general')">General</a>
+            <a href="#" onclick="loadNews('business')">Business</a>
+            <a href="#" onclick="loadNews('technology')">Technology</a>
+            <a href="#" onclick="loadNews('science')">Science</a>
+        </div>
+    </div>
+
+    <div class="content">
+        <h1>Welcome to My Beautiful Website</h1>
+        <div id="news-container"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
