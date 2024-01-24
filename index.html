@@ -3,25 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>My Beautiful Website</title>
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-    <div class="navbar">
-        <div class="logo"> News </div>
-        <div class="menu">
-            <a href="#" onclick="loadNews('general')">General</a>
-            <a href="#" onclick="loadNews('business')">Business</a>
-            <a href="#" onclick="loadNews('technology')">Technology</a>
-            <a href="#" onclick="loadNews('science')">Science</a>
-        </div>
-    </div>
-
-    <div class="content">
-        <h1>Welcome to My Beautiful Website</h1>
-        <div id="news-container"></div>
-    </div>
-
-    <script src="script.js"></script>
+    <div id="app" class="container">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">NEWS</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">หน้าหลัก</a>
+                  </li>
+                </ul>
+                <form class="d-flex">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">ค้นหา</button>
+                </form>
+              </div>
+            </div>
+        </nav>
+        <main>
+          <div class="row">
+              <div class="col">
+                  <div class="row-md-6">
+                      <div class="card m-3" v-for="item in newList" :key="item.title">
+                      <img :src="item.image" class="card-img-top w-100 h-25" alt="...">
+                      <div class="card-body">
+                          <h5 class="card-title">{{ item.title }}</h5>
+                          <p class="card-text">{{ item.description }}</p>
+                          <p class="card-text">{{ item.publishedAt }}</p>
+                          <a :href="item.url" target="_blank" class="btn btn-primary">อ่านข่าว</a>
+                      </div>
+                  </div>
+                  </div>
+              </div>
+          </div>
+      </main>
+  </div>
 </body>
+<script>
+
+  
+  const { createApp, ref } = Vue;
+
+  createApp({
+  data() {
+      return {
+          newList: [],
+      }
+  },
+  methods: {
+      
+  },
+  mounted(){
+
+      axios({
+          method: 'get',
+          url: 'https://gnews.io/api/v4/top-headlines?category=general&lang=en&country=us&max=10&apikey=4279628cbe1febce8ba96e0662bfa029'
+      }).then((res) => {
+          this.newList = res.data.articles;
+          console.log(this.newList);
+      })
+  }
+
+  }).mount('#app')
+</script>
 </html>
+
+        <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        body {
+            background-image: url('https://www.pixel4k.com/wp-content/uploads/2019/11/dreams-in-pastel_1574941285.jpg'); /* Replace 'path/to/your/image.jpg' with the actual path to your image file */
+            background-size: cover; /* Ensure the image covers the entire background */
+            background-repeat: no-repeat; /* Prevent the image from repeating */
+            background-position: center; /* Center the image */
+            background-attachment: fixed; /* Fixed background to make it scroll with the page */
+            background-color: #f8f9fa; /* Fallback color in case the image is not available */
+        }
+    </style>
+</head>
+<body>
+    <div id="app" class="container">
+        <!-- Your existing HTML content -->
+    </div>
+</body>
+<script>
+    // Your existing JavaScript script
+</script>
+        </html>
